@@ -7,7 +7,7 @@ import java.text.{DecimalFormat, NumberFormat}
 import scala.io.Source
 import scala.util.Random
 
-object MozartMusicalDice {
+object MozartMusicalDice extends App {
 
     val mozartSystem = Vector(
         Vector(96, 32, 69, 40, 148, 104, 152, 119, 98, 3, 54),
@@ -34,14 +34,12 @@ object MozartMusicalDice {
         BeatLine(line(0), line(1).toDouble, line(2).toDouble)
     })
 
-    def main(args: Array[String]): Unit = {
-        val measuresToUse = mozartSystem.indices map(i => {
-            val diceRoll = rollDices
-            println(s"Rolled: $diceRoll")
-            mozartSystem(i)(diceRoll - 2)
-        })
-        printComposition(measuresToUse)
-    }
+    val measuresToUse = mozartSystem.indices map(i => {
+        val diceRoll = rollDices
+        println(s"Rolled: $diceRoll")
+        mozartSystem(i)(diceRoll - 2)
+    })
+    printComposition(measuresToUse)
 
     def getComposition(measuresToUse: Seq[Int]): Seq[String] = {
         measuresToUse.zipWithIndex.flatMap {
